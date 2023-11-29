@@ -40,6 +40,10 @@ export function Navbar () {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
+                      <DropdownMenuItem>
+                        <Link to='jobs/my-listings' >Job Listings</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
                       <DropdownMenuItem onClick={logout}>
                       Logout
                       </DropdownMenuItem>
@@ -73,6 +77,9 @@ export function Navbar () {
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
                         <DropdownMenuSubContent>
+                          <DropdownMenuItem>
+                            <Link to='jobs/my-listings' >Job Listings</Link>
+                          </DropdownMenuItem>
                           <DropdownMenuItem onClick={logout}>
                           Logout
                           </DropdownMenuItem>
