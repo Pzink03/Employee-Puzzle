@@ -12,10 +12,13 @@ import { JOB_LISTING_EXPERIENCE_LEVELS, JOB_LISTING_TYPES } from "@backend/const
 
 
 type JobListingValues = z.infer<typeof jobListingFormSchema>
+type NewJobListingProps = {
+    onSubmit: (values: JobListingValues) => void
+}
 
 
 
-export function JobListForm() {
+export function JobListForm({ onSubmit }: NewJobListingProps) {
     const form = useForm<JobListingValues>({
         resolver: zodResolver(jobListingFormSchema),
         defaultValues: {
@@ -30,10 +33,6 @@ export function JobListForm() {
             type: "Full Time"
         },
     })
-
-    async function onSubmit(values: JobListingValues){
-        // Implement Submit
-    }
 
     return (
         <Form {...form}>
@@ -73,19 +72,6 @@ export function JobListForm() {
                     <FormLabel>Location</FormLabel>
                     <FormControl>
                     <Input type="text" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-                )}
-                />
-                <FormField
-                control={form.control}
-                name="applyUrl"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Application URL</FormLabel>
-                    <FormControl>
-                    <Input type="url" {...field} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>
@@ -156,11 +142,9 @@ export function JobListForm() {
                 <Button type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting}>
                     {form.formState.isSubmitting ? <LoadingSpinner /> : "Create"}
                 </Button>
-
             </div>
-
             </form>
-          </Form>
+        </Form>
     )
 }
 
