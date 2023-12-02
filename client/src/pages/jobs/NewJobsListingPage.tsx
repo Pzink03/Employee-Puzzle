@@ -1,7 +1,6 @@
 import { PageHeader } from "@/components/ui/PageHeader";
-import { Button } from "@/components/ui/button";
 import { JobListForm, createJobListing } from "@/features/job-list";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function NewJobsListingsPage() {
     const navigate = useNavigate()
