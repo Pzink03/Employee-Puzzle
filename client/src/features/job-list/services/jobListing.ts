@@ -10,3 +10,8 @@ export function createJobListing(data: z.infer<typeof jobListingFormSchema> ) {
 export function getAllJobListings() {
     return baseApi.get('/job-listings/my-listings').then(res => z.array(jobListingSchema).parseAsync(res.data))
 }
+
+export function deleteListing(id: string) {
+    return baseApi.delete(`/job-listings/${id}`)
+
+}
