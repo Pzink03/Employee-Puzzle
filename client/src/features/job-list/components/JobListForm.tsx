@@ -10,18 +10,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { JOB_LISTING_EXPERIENCE_LEVELS, JOB_LISTING_TYPES } from "@backend/constants/types";
 
-
 type JobListingValues = z.infer<typeof jobListingFormSchema>
-type NewJobListingProps = {
-    onSubmit: (values: JobListingValues) => void
-}
 
-
-
-export function JobListForm({ onSubmit }: NewJobListingProps) {
-    const form = useForm<JobListingValues>({
-        resolver: zodResolver(jobListingFormSchema),
-        defaultValues: {
+const DEFAULT_VALUES: JobListingValues = {
             applyUrl: '',
             companyName: '',
             description: '',
@@ -31,7 +22,20 @@ export function JobListForm({ onSubmit }: NewJobListingProps) {
             shortDescription: '',
             title: '',
             type: "Full Time"
-        },
+}
+
+
+type NewJobListingProps = {
+    onSubmit: (values: JobListingValues) => void,
+    initialJobListing?: JobListingValues
+}
+
+
+
+export function JobListForm({ onSubmit, initialJobListing = DEFAULT_VALUES }: NewJobListingProps) {
+    const form = useForm<JobListingValues>({
+        resolver: zodResolver(jobListingFormSchema),
+        defaultValues: initialJobListing
     })
 
     return (
