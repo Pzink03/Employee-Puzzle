@@ -25,7 +25,7 @@ export function JobListingCard({ className, title, companyName, location, header
                 </div>
                 {headerDetails}
             </div>
-            <div className="flex">
+            <div className="flex gap-1 flex-wrap">
                 <Badge variant="secondary" className="flex gap-1 whitespace-nowrap">
                     <Banknote className="w-4 h-4"/> {formartCurrency(salary)}
                 </Badge>
@@ -40,7 +40,7 @@ export function JobListingCard({ className, title, companyName, location, header
         <CardContent className="flex-grow">
             {shortDescription}
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex gap-2 items-stretch justify-end">
             {footerBtns}
         </CardFooter>
     </Card>
