@@ -9,6 +9,10 @@ import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { JOB_LISTING_EXPERIENCE_LEVELS, JOB_LISTING_TYPES } from "@backend/constants/types";
+import { useState } from "react";
+import { JobListingGrid } from "./JobListingGrid";
+import { JobListingCard } from "./JobListingCard";
+import { JobListingDialogFull } from "./JobListingDialogFull";
 
 type JobListingValues = z.infer<typeof jobListingFormSchema>
 
@@ -38,7 +42,11 @@ export function JobListForm({ onSubmit, initialJobListing = DEFAULT_VALUES }: Ne
         defaultValues: initialJobListing
     })
 
+    const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+    const jobListingValues = form.watch()
+
     return (
+        <>
         <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,15 +148,24 @@ export function JobListForm({ onSubmit, initialJobListing = DEFAULT_VALUES }: Ne
                 />
                 </div>
             <div className="flex gap-2 justify-end">
-                <Button type="button" variant="outline">
-                    Show Preview
+                <Button type="button" variant="outline" onClick={() => setIsPreviewOpen(!isPreviewOpen)}>
+                    {isPreviewOpen ? "Close" : "Show"} Preview
                 </Button>
                 <Button type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting}>
-                    {form.formState.isSubmitting ? <LoadingSpinner /> : "Create"}
+                    {form.formState.isSubmitting ? <LoadingSpinner /> : ("Confirm")}
                 </Button>
             </div>
             </form>
         </Form>
+        {isPreviewOpen && (
+            <JobListingGrid className="mt-12">
+                <JobListingCard
+                {...jobListingValues}
+                footerBtns={<JobListingDialogFull {...jobListingValues} />}
+                />
+            </JobListingGrid>
+        )}
+        </>
     )
 }
 

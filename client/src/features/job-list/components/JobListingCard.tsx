@@ -19,8 +19,8 @@ export function JobListingCard({ className, title, companyName, location, header
                 <div>
                     <CardTitle>{title}</CardTitle>
                     <CardDescription className="flex flex-col">
-                        <div>{companyName}</div>
-                        <div>{location}</div>
+                        <span>{companyName}</span>
+                        <span>{location}</span>
                     </CardDescription>
                 </div>
                 {headerDetails}
