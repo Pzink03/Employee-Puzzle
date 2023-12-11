@@ -8,6 +8,11 @@ import { deleteListing } from "../services/jobListing"
 import { useMemo, useState } from "react"
 import { ToastAction } from "@/components/ui/toast"
 import { toast } from "@/components/ui/use-toast"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { JOB_LISTING_DURATIONS } from "@backend/constants/types"
+import { formartCurrency } from "@/utils/formatters"
+import { getJobListingPriceInCents } from "@backend/utils/getJobListingPriceInCents"
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog"
 
 
 type MyJobListingGridProps = {
@@ -16,6 +21,7 @@ type MyJobListingGridProps = {
 
 export function MyJobListingGrid({ jobListings }: MyJobListingGridProps ) {
     const [deletedJobListingIds, setDeletedJobListingIds] = useState<string[]>([])
+
     const visibleJobListings = useMemo(() => {
         return jobListings.filter((jobListing) => !deletedJobListingIds.includes(jobListing.id))
     }, [jobListings, deletedJobListingIds])
@@ -48,6 +54,7 @@ type MyJobListingCard = {
 }
 
 function MyJobListingsCard({ jobListing, deleteJobListing}: MyJobListingCard){
+    const [selectedDuration, setSelectedDuration] = useState<typeof JOB_LISTING_DURATIONS[number]>()
     return (
     <JobListingCard {...jobListing}
     footerBtns={
@@ -56,6 +63,36 @@ function MyJobListingsCard({ jobListing, deleteJobListing}: MyJobListingCard){
         <Button variant="outline" asChild>
             <Link to={`/jobs/${jobListing.id}/edit`}>Edit</Link>
         </Button>
+        <Dialog open={selectedDuration != null} onOpenChange={() => setSelectedDuration(undefined)}>
+            <DialogContent>
+                <DialogTitle>Extend {jobListing.title} for {selectedDuration}  days</DialogTitle>
+                <DialogDescription>
+                    This is a non-refundable purchase
+                </DialogDescription>
+                {/* Stripe Content*/}
+            </DialogContent>
+        <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          >
+            Extend
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {JOB_LISTING_DURATIONS.map(duration => (
+          <DropdownMenuItem
+            onClick={() => setSelectedDuration(duration)}
+            key={duration}
+
+          >
+            {duration} Days -{" "}
+            {formartCurrency(getJobListingPriceInCents(duration) / 100)}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+    </Dialog>
         </>
     }
     />
