@@ -24,9 +24,9 @@ export function Navbar () {
   return (
       <nav className="sticky top-0 z-10 border-b p-4 bg-white dark:bg-slate-950">
           <div className="container flex items-center justify-between gap-4">
-              <span className="text-lg">Pete's Job Board</span>
+              <span className="text-lg">Job Board</span>
               <div className="flex">
-                  <ThemeToggleButton />npo
+                  <ThemeToggleButton />
                   <div className='hidden sm:flex'>
                   <NavItem to="/tasks" label="Task Board" />
                   {user ? (<DropdownMenu>
