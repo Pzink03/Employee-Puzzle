@@ -20,11 +20,17 @@ import { useAuth } from "@/features/authentication"
 
 export function Navbar () {
   const { user, logout } = useAuth()
+  const {theme} = useTheme()
 
   return (
       <nav className="sticky top-0 z-10 border-b p-4 bg-white dark:bg-slate-950">
           <div className="container flex items-center justify-between gap-4">
-              <span className="text-lg">Job Board</span>
+            {theme == "dark" ? (
+
+              <img src="../assets/images/logo.svg"/>
+            ) : (
+              <img src="../assets/images/logodark.svg"/>
+            )}
               <div className="flex">
                   <ThemeToggleButton />
                   <div className='hidden sm:flex'>

@@ -11,6 +11,7 @@ import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 
 import { AxiosError } from "axios"
 import { useAuth } from "..";
+import { useTheme } from "@/hooks/useTheme";
 
 type LoginValues = z.infer<typeof loginSchema>
 
@@ -33,12 +34,27 @@ export function LoginForm() {
             }
     })
     }
+    const {theme} = useTheme()
 
     return (
         <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <Card className="w-[400px]">
             <CardHeader>
+                {theme != "dark" ? (
+
+                <img
+                src="../assets/images/logolg.svg"
+                alt="logo"
+                className=""
+                />
+                ) : (
+                    <img
+                    src="../assets/images/logolgdark.svg"
+                    alt="dark logo"
+                    />
+
+                )}
                 <CardTitle>Log In</CardTitle>
                 {form.formState.errors.root?.message && (
                     <CardDescription className="text-red-500 dark:text-red-900">
