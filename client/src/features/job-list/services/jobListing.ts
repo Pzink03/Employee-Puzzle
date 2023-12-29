@@ -35,3 +35,7 @@ export function createPublishPaymentIntent(
             {duration}
         ).then(res => res.data)
 }
+
+export function getAllPublishedJobListings() {
+    return baseApi.get('/job-listings/published').then(res => z.array(jobListingSchema).parseAsync(res.data))
+}
