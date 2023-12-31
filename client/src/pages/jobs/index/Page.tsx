@@ -1,18 +1,17 @@
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Button } from "@/components/ui/button";
-import { JobListingSkeletonGrid } from "@/features/job-list";
-import { JobListingGrid } from "@/features/job-list/components/JobListingGrid";
+import { JobListingSkeletonGrid, JobListingCard, JobListingDialogFull, JobListingGrid, JobListingFilterForm, useJobListingFilterForm } from "@/features/job-list";
 import { Await, useDeferredLoaderData } from "@/lib/reactRouter";
 import { Suspense } from "react";
 import { Link } from "react-router-dom";
 import { loader } from "./loader";
-import { JobListingCard } from "@/features/job-list/components/JobListingCard";
-import { JobListingDialogFull } from "@/features/job-list/components/JobListingDialogFull";
 import { Eye, EyeOff, Heart } from "lucide-react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { cn } from "@/utils/shadcnUtils";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+
+
 
 export function JobListingsPage() {
     const { jobListingsPromise } = useDeferredLoaderData<typeof loader>()
@@ -20,6 +19,8 @@ export function JobListingsPage() {
     const [hiddenJobListingIds, setHiddenJobListingIds] = useLocalStorage<string[]>("hiddenJobsIds", [])
     const [favoriteJobListingIds, setFavoriteJobListingIds] = useLocalStorage<string[]>("favoriteJobsIds", [])
 
+
+    const { form, getFilteredJobs } = useJobListingFilterForm()
     function toggleFavorite(jobListingIds: string) {
         setFavoriteJobListingIds(ids => {
             if(ids.includes(jobListingIds)) {
@@ -66,15 +67,17 @@ export function JobListingsPage() {
         >
         Job Listings
         </PageHeader>
+        <JobListingFilterForm form={form} className="mb-12" />
+
         <Suspense fallback={<JobListingSkeletonGrid />}>
           <Await resolve={jobListingsPromise}>
             {jobListings => <JobListingGrid>
-                {jobListings.map(jobListing => {
+                {getFilteredJobs(jobListings, hiddenJobListingIds, favoriteJobListingIds).map(jobListing => {
                     const isFavorite = favoriteJobListingIds.includes(jobListing.id)
                     const isHidden = hiddenJobListingIds.includes(jobListing.id)
                     const HiddenIcon = isHidden ? Eye : EyeOff
 
-                    return <JobListingCard className={isHidden ? "opacity-50" : undefined} {...jobListing} footerBtns={<JobListingDialogFull {...jobListing} />} headerDetails={
+                    return <JobListingCard key={jobListing.id} className={isHidden ? "opacity-50" : undefined} {...jobListing} footerBtns={<JobListingDialogFull {...jobListing} />} headerDetails={
                         <div className="-mr-3 -mt-3">
                             <Button onClick={() => toggleHidden(jobListing.id, jobListing.title)} variant="ghost" size="icon" className="rounded-full">
                                 <HiddenIcon className="w-4 h-4" />
