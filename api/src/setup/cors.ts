@@ -3,5 +3,5 @@ import { Express } from "express"
 import { env } from "../config"
 
 export function setupCors(app: Express) {
-  app.use(cors({ origin: env.CLIENT_URL, credentials: true, allowedHeaders: '*' }))
+  app.use(cors({ origin: '*', credentials: true }))
 }
