@@ -1,5 +1,5 @@
 ## Employment Puzzle
-
+While developing this already existing job board website I implemented front-end features to enhance overall functionality and user interface. Implementing custom React hooks I integrate context functionality, giving the application dynamic features such as a user-friendly dark mode. I also designed and integrated the use of Stripe payments, providing a solution for job listing renewals and facilitating updates to job statuses. Also, I introduced filtering, hiding, and favoriting job listings, utilizing local storage to ensure persistent UI interactions.
 ## Functionality
 
 ### Key Features
