@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const baseApi = axios.create({
   baseURL: env.VITE_API_URL,
-  withCredentials: true,
+
 })
 
 if (env.VITE_TEST_SLOW_API) {
