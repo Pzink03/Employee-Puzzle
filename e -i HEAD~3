@@ -1,0 +1,59 @@
+[33mcommit 12651bea332c180eaab20d6c2dc550483c735b56[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 25 20:42:32 2024 -0500
+
+    Update deploy
+
+[33mcommit 53b602ab11fbc3429218a87dff72e0b0d0945a08[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 25 20:21:04 2024 -0500
+
+    Update deploy
+
+[33mcommit 616f070f712eb76a70b1736635154875af689f00[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 25 20:09:09 2024 -0500
+
+    Update deploy
+
+[33mcommit 7eeee7fbefbd5766b1466981ff6eba325d9a0434[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 25 19:23:44 2024 -0500
+
+    Update deploy
+
+[33mcommit 0e92fd3ee31bc01ed7f35e4e79acb8590232e70c[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 11 15:05:06 2024 -0500
+
+    Update ReadMe typo fix
+
+[33mcommit 1691500509a1841bfe6b67ad4b02f8766db6187b[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Thu Jan 11 15:03:53 2024 -0500
+
+    Update ReadMe to include project about
+
+[33mcommit 2f57d9b00880686d48739c24abd303b162cbc95f[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Wed Jan 10 19:59:33 2024 -0500
+
+    Updated ReadMe
+
+[33mcommit 01578686087d1c36aa34af0bb2ff2dd82487ba5c[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Wed Jan 3 12:05:47 2024 -0500
+
+    another cors bug fix
+
+[33mcommit 74846f526c152270cee1126ff75ea34e66fc0560[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Wed Jan 3 11:46:21 2024 -0500
+
+    cors update
+
+[33mcommit 5d525fa63475e9649d575b8d0d1cfb3a6c880ff2[m
+Author: Pete <pete.zink03@gmail.com>
+Date:   Sun Dec 31 20:10:12 2023 -0500
+
+    Another deployment bug fix
